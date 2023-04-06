@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tout y est!{% endblock %}
+
+{% block body %}
+    <!--================Home Banner Area =================-->
+    {% include 'components/blog/_blog_banner.html.twig' %}
+    <!--================End Home Banner Area =================-->
+
+    <!--================Blog Categorie Area =================-->
+    {% include 'components/blog/_blog_category_area.html.twig' %}
+    <!--================Blog Categorie Area =================-->
+
+    <!--================Blog Area =================-->
+    <section class="blog_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    {% include 'components/blog/_post_card.html.twig' with {
+                        posts: posts
+                    } %}
+                </div>
+                <div class="col-lg-4">
+                    {% include 'components/blog/_blog_right_sidebar.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+{% endblock %}

@@ -1,0 +1,117 @@
+/* Main Button Area css
+============================================================================================ */
+.main_btn {
+    display: inline-block;
+    background-color: $baseColor;
+    padding: 0 40px;
+    color: $white;
+    font-family: $nunito;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 48px;
+    border-radius: 0;
+    outline: none !important;
+    box-shadow: none !important;
+    text-align: center;
+    border: 1px solid $baseColor;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        background-color: transparent;
+        color: $baseColor;
+    }
+}
+
+.main_btn2 {
+    display: inline-block;
+    background-color: $white;
+    padding: 0 32px;
+    color: $dip;
+    font-family: $nunito;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 48px;
+    border-radius: 0;
+    outline: none !important;
+    box-shadow: none !important;
+    text-align: center;
+    border: 1px solid $white;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        background-color: $baseColor;
+        color: $white;
+        border-color: $baseColor;
+    }
+}
+
+.submit_btn {
+    width: auto;
+    display: inline-block;
+    background-color: $baseColor;
+    padding: 0 48px;
+    color: $white;
+    font-family: $nunito;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 50px;
+    border-radius: 0;
+    outline: none !important;
+    box-shadow: none !important;
+    text-align: center;
+    border: 1px solid $baseColor;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        background-color: transparent;
+        color: $baseColor;
+    }
+}
+
+.white_bg_btn {
+    display: inline-block;
+    background-color: #f9f9ff;
+    padding: 0px 36px;
+    color: $dip;
+    font-family: $nunito;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 34px;
+    border-radius: 0;
+    outline: none !important;
+    box-shadow: none !important;
+    text-align: center;
+    border: 1px solid #eeeeee;
+    cursor: pointer;
+    @include transition;
+
+    &:hover {
+        background-color: $baseColor;
+        color: $white;
+        border-color: $baseColor;
+    }
+}
+
+.black_btn {
+    padding: 0 44px;
+    line-height: 50px;
+    background-color: $dip;
+    color: $baseColor;
+    display: inline-block;
+    border-radius: 0;
+    font-size: 13px;
+    font-family: $nunito;
+    font-weight: 500;
+    @include transition;
+
+    &:hover {
+        background-color: $baseColor;
+        color: $dip;
+    }
+}
+
+/* End Main Button Area css
+============================================================================================ */

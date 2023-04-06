@@ -1,0 +1,17 @@
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""
+             style="background: linear-gradient(to bottom left, rgba(0,0,0, .15), rgba(0,0,0, .2)), url({{ asset('uploads/images/posts/banner/' ~
+                 post.thumbnail.imageName) | imagine_filter('blog_banner') }}) no-repeat scroll center center; "></div>
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2>{{ post.title }}</h2>
+                <div class="page_link">
+                    <a href="{{ path('cc_home') }}">Accueil</a>
+                    <a href="{{ path('cc_blog') }}">Blog</a>
+                    <a href="{{ path('cc_single_blog', {slug: post.slug}) }}">{{ post.title }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

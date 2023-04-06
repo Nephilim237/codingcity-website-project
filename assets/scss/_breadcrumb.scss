@@ -1,0 +1,170 @@
+/* Home Banner Area css
+============================================================================================ */
+.home_banner_area{
+	position: relative;
+	z-index: 1;
+	min-height: 780px;
+	.banner_inner{
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		min-height: 780px;
+		.overlay{
+			//background: url(../../public/img/banner/home-banner.jpg) no-repeat scroll center center;
+			-webkit-background-size: cover !important;
+			background-size: cover !important;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			height: 121%;
+			bottom: 0;
+			z-index: -1;
+		}
+		.banner_content{
+			color: $white;
+			h5{
+				text-transform: uppercase;
+				font-family: $nunito;
+				font-size: 14px;
+				font-weight: normal;
+				margin-bottom: 16px;
+			}
+			h3{
+				font-size: 4rem;
+				font-family: $heebo;
+				font-weight: 700;
+				margin-bottom: 20px;
+			}
+			p{
+				font-size: 1.1rem;
+				line-height: 24px;
+				font-family: $nunito;
+				font-weight: normal;
+				max-width: 620px;
+				margin: auto;
+			}
+			.main_btn{
+				margin-top: 40px;
+			}
+		}
+	}	
+	
+}
+
+.blog_banner{
+	min-height: 660px;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	margin-bottom: 0;
+	.banner_inner{
+		background: #04091e;
+		position: relative; 
+		overflow: hidden;
+		width: 100%;
+		min-height: 660px;
+		z-index: 1;
+		.overlay{
+			background: url(../../public/img/banner/banner-2.jpg) no-repeat scroll center center;
+			-webkit-background-size: cover !important;
+			background-size: cover !important;
+			opacity: .5;
+			height: 125%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			z-index: -1;
+		}
+		.blog_b_text{
+			max-width: 700px;
+			margin: auto;
+			color: $white;
+			h2{
+				font-size: 60px;
+				font-weight: bold;
+				font-family: $heebo;
+				line-height: 66px;
+				margin-bottom: 16px;
+			}
+			p{
+				font-size: 16px;
+				margin-bottom: 32px;
+			}
+			.white_bg_btn{
+				line-height: 42px;
+				padding: 0 44px;
+			}
+		}
+	}
+}
+
+.banner_box{
+	max-width: 1620px;
+	margin: auto;
+}
+.banner_area{
+	position: relative;
+	z-index: 1;
+	min-height: 300px;
+	.banner_inner{
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		min-height: 300px;
+		background: #04091e;
+		z-index: 1;
+		.overlay{
+			background: url(../../public/img/banner/banner.jpg) no-repeat scroll center center;
+			-webkit-background-size: cover !important;
+			background-size: cover !important;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			height: 125%;
+			bottom: 0;
+			z-index: -1;
+			opacity: .6;
+		}
+		.banner_content{
+			h2{
+				color: $white;
+				font-size: 48px;
+				font-family: $heebo;
+				margin-bottom: 0px;
+				font-weight: bold;
+			}
+			.page_link{
+				a{
+					font-size: 14px;
+					color: $white;
+					font-family: $nunito;
+					margin-right: 32px;
+					position: relative;
+					&:before{
+						content: "\e87a";
+						font-family: 'Linearicons-Free';
+						position: absolute;
+						right: -25px;
+						top: 50%;
+						transform: translateY(-50%);
+					}
+					&:last-child{
+						margin-right: 0px;
+						&:before{
+							display: none;
+						}	
+					}
+					&:hover{
+						color: $baseColor;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* End Home Banner Area css
+============================================================================================ */

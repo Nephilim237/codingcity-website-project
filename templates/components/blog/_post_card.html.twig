@@ -1,0 +1,42 @@
+{% if posts | length != 0 %}
+    <div class="blog_left_sidebar">
+        {% for post in posts %}
+            <article class="row blog_item">
+                <a href="{{ path('cc_single_blog', {slug: post.slug}) }}" class="text-secondary">
+                    <div class="blog_post">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="{{ asset('uploads/images/posts/banner/' ~ post.thumbnail.imageName) | imagine_filter
+                                    ('blog_post') }}"
+                                     alt="{{ post.title }}">
+
+                            </div>
+                            <div class="col-8">
+                                <div class="blog_details pt-0">
+                                    <h2>{{ post.title }}</h2>
+                                    <p class="mb-2">{{ post.content | u.truncate(200, '...', false) | raw }}</p>
+                                    {#                                                        <a href="#" class="white_bg_btn fw-bold">View More</a> #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </article>
+        {% endfor %}
+
+        <div class="blog-pagination justify-content-center d-flex">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    </div>
+{% else %}
+    <div class="d-flex justify-content-center">
+        <div class="cc-nothing d-flex justify-content-center align-items-center flex-column fs-1 gap-4">
+            <div class="cc-nothing-icon mb-5">
+                <span class="material-icons-sharp" style="font-size: 120px">sentiment_dissatisfied</span>
+            </div>
+            <div class="cc-nothing-text">
+                Aucun post pour le moment
+            </div>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,222 @@
+/* Courses Area css
+============================================================================================ */
+.courses_area {
+    overflow: hidden;
+}
+
+.grid_inner {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+.courses_inner {
+    margin-left: -16px;
+    margin-right: -16px;
+    overflow: hidden;
+    margin-bottom: -32px;
+
+    .grid_item {
+    }
+
+    .courses_item {
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+    .course_item{
+        position: relative;
+        .hover_text{
+            padding-left: 20px;
+        }
+    }
+
+    .hover_text {
+        position: absolute;
+        bottom: 16px;
+        padding-left: 20px;
+
+        .cat {
+            display: inline-block;
+            background: $baseColor;
+            color: $white;
+            padding: 0 24px;
+            line-height: 32px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: $nunito;
+            margin-bottom: 12px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: $white;
+            @include transition;
+        }
+
+        .list {
+            li {
+                display: inline-block;
+                margin-right: 16px;
+
+                a {
+                    color: $white;
+                    font-size: 14px;
+                    font-family: $nunito;
+
+                    i {
+                        padding-right: 4px;
+                    }
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &:hover {
+            h4 {
+                color: $baseColor;
+            }
+        }
+    }
+}
+
+.wd55 {
+    width: 55.55%;
+    float: left;
+    margin-bottom: 32px;
+}
+
+.wd44 {
+    width: 44.45%;
+    float: left;
+    margin-bottom: 32px;
+}
+
+
+/* End Courses Area css
+============================================================================================ */
+
+/* Course Details Area css
+============================================================================================ */
+.course_details_area {
+
+}
+
+.course_details_inner {
+    .nav.nav-tabs {
+        border: none;
+        margin-top: 32px;
+
+        li {
+            margin: 0 32px 0 0;
+
+            a {
+                border: none;
+                padding: 0;
+                margin-bottom: 0;
+                line-height: 55px;
+                font-size: 14px;
+                font-family: $nunito;
+                color: $dip;
+                border-bottom: 1px solid transparent;
+
+                &.active {
+                    border-color: $baseColor;
+                }
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .tab-content {
+        background: $light;
+
+        .comments-area {
+            margin-top: 0;
+            border-bottom: 0;
+        }
+
+        .comment-form {
+            margin-top: 0;
+            margin-bottom: 0;
+            border-top: 0;
+
+            .submit_btn {
+                line-height: 40px;
+                border-radius: 4px;
+            }
+        }
+
+        .objctive_text {
+            padding: 24px;
+            border: 1px solid $gray-e;
+
+            .list {
+                padding-top: 16px;
+                padding-bottom: 16px;
+
+                li {
+                    margin-bottom: 28px;
+
+                    a {
+                        color: $pfont;
+                        font-family: $nunito;
+                        font-size: 14px;
+                        @include transition;
+
+                        &:hover {
+                            color: $baseColor;
+                        }
+                    }
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.c_details_list {
+    .list {
+        li {
+            margin-bottom: 12px;
+
+            a {
+                background: $light;
+                display: block;
+                line-height: 40px;
+                padding: 0 16px;
+                font-size: 14px;
+                font-family: $nunito;
+                color: $pfont;
+
+                span {
+                    float: right;
+                }
+            }
+
+            &:first-child {
+                a {
+                    span {
+                        color: $baseColor;
+                    }
+                }
+            }
+        }
+    }
+
+    .main_btn {
+        display: block;
+    }
+}
+
+/* End Course Details Area css
+============================================================================================ */

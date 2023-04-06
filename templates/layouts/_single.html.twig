@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block body %}
+
+    {% include 'components/blog/_single_banner.html.twig' with {
+        post: post
+    } %}
+
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area p_120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    {% include 'components/blog/single_post/_single_post.html.twig' with {
+                        post: post
+                    } %}
+                    {% include 'components/blog/single_post/_navigation_area.html.twig' %}
+                    {% include 'components/blog/single_post/_comments_area.html.twig' %}
+                    {% include 'components/blog/single_post/_comment_form.html.twig' %}
+                </div>
+
+                <div class="col-lg-4">
+                    {% include 'components/blog/_blog_right_sidebar.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+
+{% endblock %}
+

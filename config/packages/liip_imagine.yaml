@@ -1,0 +1,49 @@
+# Documentation on how to configure the bundle can be found at: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    driver: "gd"
+    twig:
+        mode: lazy
+    default_filter_set_settings:
+        format: webp
+    webp:
+        generate: true
+    filter_sets :
+        profile_image_navbar :
+            quality : 75
+            filters :
+                thumbnail  : { size : [120, 120], mode : outbound }
+
+        profile_image_page:
+            quality : 75
+            filters :
+                thumbnail  : { size : [120, 120], mode : outbound }
+
+        post_banner:
+            quality: 100
+            filters:
+                thumbnail  : { size : [640, 480], mode : outbound }
+
+        post_edit:
+            quality: 100
+            filters:
+                thumbnail  : { size : [214, 120], mode : outbound }
+
+        post_thumbnail:
+            quality: 100
+            filters:
+                thumbnail  : { size : [107, 60], mode : outbound }
+
+        blog_banner:
+            quality: 75
+            filters:
+                thumbnail  : { size : [960, 240], mode : outbound }
+
+        blog_post:
+            quality: 75
+            filters:
+                thumbnail  : { size : [750, 350], mode : outbound }
+
+        single_post:
+            quality: 75
+            filters:
+                thumbnail  : { size : [750, 350], mode : outbound }

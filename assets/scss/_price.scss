@@ -1,0 +1,114 @@
+/* Price Area css
+============================================================================================ */
+.packages_area{
+	background: $light;
+}
+.packages_inner{
+	.col-lg-4{
+		vertical-align: middle;
+		align-self: center;
+	}
+}
+.packages_text{
+	h3{
+		color: $dip;
+		font-size: 36px;
+		margin-bottom: 20px;
+	}
+	p{
+		margin-bottom: 0;
+	}
+}
+.packages_item{
+	background: $white;
+	border-radius: 0;
+	text-align: center;
+	padding: 32px 56px;
+
+	.pack_head{
+		i{
+			height: 140px;
+			width: 140px;
+			background: #edf8e8;
+			display: block;
+			border-radius: 50%;
+			margin: 0 auto 24px;
+			font-size: 36px;
+			color: $dip;
+			line-height: 140px;
+			@include transition;
+		}
+		h3{
+			color: $dip;
+			margin-bottom: 12px;
+		}
+		p{
+			margin-bottom: 24px;
+		}
+	}
+	.pack_body{
+		.list{
+			li{
+				a{
+					color: $pfont;
+					line-height: 50px;
+					border-bottom: 1px solid $gray-e;
+					display: block;
+				}
+				&:first-child{
+					a{
+						border-top: 1px solid $gray-e;
+					}
+				}
+			}
+		}
+	}
+	.pack_footer{
+		position: relative;
+		h4{
+			color: $dip;
+			font-family: $nunito;
+			font-size: 30px;
+			font-weight: normal;
+			margin-top: 40px;
+			margin-bottom: 0;
+		}
+		.main_btn{
+			padding: 0 36px;
+			position: absolute;
+			top: -20px;
+			width: 100%;
+			max-width: 138px;
+			left: 50%;
+			transform: translateX(-50%);
+			box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.1);
+			opacity: 0;
+		}
+		&:hover{
+			h4{
+				opacity: 0;
+			}
+			.main_btn{
+				opacity: 1;
+			}
+		}
+	}
+	&:hover{
+		.pack_head{
+			i{
+				background: $baseColor;
+				color: $white;
+			}
+		}
+		.pack_footer{
+			h4{
+				opacity: 0;
+			}
+			.main_btn{
+				opacity: 1;
+			}
+		}
+	}
+}
+/* End Price Area css
+============================================================================================ */
