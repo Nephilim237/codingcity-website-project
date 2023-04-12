@@ -1,6 +1,11 @@
 <div class="blog_right_sidebar">
     {% include 'components/blog/_search_widget.html.twig' %}
-    {% include 'components/blog/_author_widget.html.twig' %}
+    {% include 'components/blog/_author_widget.html.twig' with {
+        userPic: userPic,
+        userFullname: userFullname,
+        userJobTitle: userJobTitle,
+        userBio: userBio
+    } %}
     {% include 'components/blog/_popular_post_widget.html.twig' %}
     {% include 'components/blog/_ads_widget.html.twig' %}
     {% include 'components/blog/_post_category_widget.html.twig' %}

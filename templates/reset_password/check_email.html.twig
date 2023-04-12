@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Email de réinitialisation envoyé{% endblock %}
+
+{% block body %}
+    <section class="email-check-section py-5 my-5">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-center w-100 flex-column" style="height: 360px;">
+                <div class="cc-big-notification-icon">
+                    <i class="ri-mail-send-fill fst-italic"></i>
+                </div>
+                <p>
+                    Un mail de réinitialisation vous a été envoyé.
+                </p>
+                <p>
+                    Vérifiez votre boîte email
+                    <span class="primary-color">Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData,
+                            'ResetPasswordBundle', 'fr_FR') }}</span>.
+                </p>
+                <p>Vous n'avez reçu aucun email ? Consultez vos pourriels ou <a href="{{ path('app_forgot_password_request') }}">réessayez</a>.</p>
+                <div class="col">
+                    {#                    {% for message in app.flashes('reset_password_error') %} #}
+                    {#                        <div class="alert alert-success" role="alert">{{ message }}</div> #}
+                    {#                    {% endfor %} #}
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

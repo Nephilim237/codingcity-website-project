@@ -12,20 +12,18 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[AsEntityListener(event: Events::preUpdate, entity: Post::class)]
 class PostEntityListener
 {
-    /**
-     * @param SluggerInterface $slugger
-     */
     public function __construct(private readonly SluggerInterface $slugger)
     {
     }
 
-    public function prePersist(Post $post, LifecycleEventArgs $args): void
+    public function prePersist(Post $post, LifecycleEventArgs $eventArgs): void
     {
         $post->computeSlug($this->slugger);
     }
 
-    public function preUpdate(Post $post, LifecycleEventArgs $args): void
+    public function preUpdate(Post $post, LifecycleEventArgs $eventArgs): void
     {
         $post->computeSlug($this->slugger);
     }
+
 }

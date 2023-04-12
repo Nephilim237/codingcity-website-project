@@ -3,7 +3,9 @@
 namespace App\Entity\Post;
 
 use App\Entity\Post\Category;
+use App\Entity\User;
 use App\Repository\Post\PostRepository;
+use App\Traits\DatetimeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,10 +14,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
-#[ORM\HasLifecycleCallbacks]
 #[UniqueEntity('slug', message: 'Ce slug existe déjà')]
 class Post
 {
+    use DatetimeTrait;
+
     const STATES = ['STATE_DRAFT', 'STATE_PUBLISHED'];
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -26,9 +29,9 @@ class Post
     #[Assert\NotBlank()]
     private string $title;
 
-    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotBlank]
-    private string $slug;
+    private ?string $slug = null;
 
     #[ORM\Column(type: 'text')]
     #[Assert\NotBlank]
@@ -40,41 +43,51 @@ class Post
     #[ORM\OneToOne(inversedBy: 'post', targetEntity: Thumbnail::class, cascade: ['persist', 'remove'])]
     private Thumbnail $thumbnail;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\NotNull]
-    private \DateTimeImmutable $createdAt;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\NotNull]
-    private \DateTimeImmutable $updatedAt;
-
     #[ORM\ManyToOne(targetEntity: Video::class, cascade: ['persist', 'remove'], inversedBy: 'post')]
     private ?Video $video = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'post')]
     private Collection $categories;
 
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'postLikes')]
+    #[ORM\JoinTable('user_post_like')]
+    private Collection $userLike;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->categories = new ArrayCollection();
+        $this->userLike = new ArrayCollection();
     }
 
-    public function __toString(): string
+    public function __toString()
     {
         return $this->title;
     }
 
     public function computeSlug(SluggerInterface $slugger): void
     {
-        $this->slug = (string)$slugger->slug((string)$this)->lower();
+        $this->slug = (string) $slugger->slug((string) $this)->lower();
     }
 
-    #[ORM\PreUpdate]
-    public function preUpdate(): void
+    public function isLikedByUser(User $user): bool
     {
-        $this->updatedAt = new \DateTimeImmutable();
+        return $this->userLike->contains($user);
+    }
+
+    /**
+     * Retourne le nombre de like propre à un post
+     *
+     * @return int
+     */
+    public function howMuchLikes(): int
+    {
+        return count($this->userLike);
     }
 
     public function getId(): ?int
@@ -87,7 +100,7 @@ class Post
         return $this->title;
     }
 
-    public function setTitle(string $title): Post
+    public function setTitle(string $title): static
     {
         $this->title = $title;
         return $this;
@@ -107,16 +120,6 @@ class Post
     {
         $this->content = $content;
         return $this;
-    }
-
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdateAt(): \DateTimeImmutable
-    {
-        return $this->updatedAt;
     }
 
     public function getState(): string
@@ -176,6 +179,42 @@ class Post
         if ($this->categories->removeElement($category)) {
             $category->removePost($this);
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUserLike(): Collection
+    {
+        return $this->userLike;
+    }
+
+    public function addUserLike(User $userLike): self
+    {
+        if (!$this->userLike->contains($userLike)) {
+            $this->userLike->add($userLike);
+        }
+
+        return $this;
+    }
+
+    public function removeUserLike(User $userLike): self
+    {
+        $this->userLike->removeElement($userLike);
 
         return $this;
     }

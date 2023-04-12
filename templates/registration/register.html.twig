@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}Rejoignez-nous{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <section class="section-form pt_120 pb-3 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-6 col-sm-10"></div>
+                <div class="col-lg-4 col-md-6 col-sm-10">
+                    <h1 class="h3">Créer un compte</h1>
+                    {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword.first) }}
+                    {{ form_row(registrationForm.plainPassword.second) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    <div class="d-grid gap-2 my-5">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-0 text-white">S'inscrire <i class="fas fa-door-open"></i></button>
+                        <a href="{{ path('app_login') }}" class="text-center mt-1 mx-2">J'ai déjà un compte.</a>
+                    </div>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

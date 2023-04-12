@@ -2,7 +2,7 @@
     "use strict"
 	
 	
-	var nav_offset_top = $('header').height() + 50; 
+	let nav_offset_top = $('header').height() + 50;
     /*-------------------------------------------------------------------------------
 	  Navbar 
 	-------------------------------------------------------------------------------*/
@@ -11,7 +11,7 @@
     function navbarFixed(){
         if ( $('.header_area').length ){ 
             $(window).scroll(function() {
-                var scroll = $(window).scrollTop();   
+                let scroll = $(window).scrollTop();
                 if (scroll >= nav_offset_top ) {
                     $(".header_area").addClass("navbar_fixed");
                 } else {
@@ -151,16 +151,16 @@
 	/*----------------------------------------------------*/
     /*  Google map js
     /*----------------------------------------------------*/
-     
-    if ( $('#mapBox').length ){
-        var $lat = $('#mapBox').data('lat');
-        var $lon = $('#mapBox').data('lon');
-        var $zoom = $('#mapBox').data('zoom');
-        var $marker = $('#mapBox').data('marker');
-        var $info = $('#mapBox').data('info');
-        var $markerLat = $('#mapBox').data('mlat');
-        var $markerLon = $('#mapBox').data('mlon');
-        var map = new GMaps({
+     let mapBox = $('#mapBox');
+    if ( mapBox.length ){
+        let $lat = mapBox.data('lat');
+        let $lon = mapBox.data('lon');
+        let $zoom = mapBox.data('zoom');
+        let $marker = mapBox.data('marker');
+        let $info = mapBox.data('info');
+        let $markerLat = mapBox.data('mlat');
+        let $markerLon = mapBox.data('mlon');
+        let map = new GMaps({
         el: '#mapBox',
         lat: $lat,
         lng: $lon,

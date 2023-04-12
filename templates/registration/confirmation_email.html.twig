@@ -1,0 +1,84 @@
+{% block stylesheets %}
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            color: #565360;
+            font-family: system-ui;
+        }
+        .container {
+            height: 480px;
+            width: 640px;
+            margin-top: 70px;
+            padding: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.05), 0 10px 10px rgba(0,0,0,0.08);
+        }
+        .mail-content {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        h1 {
+            font-size: 32px;
+            font-family: system-ui;
+            font-weight: 700;
+            text-align: center;
+            color: #565360;
+        }
+
+        .cc-reset-button {
+            padding: 16px 32px;
+            margin: 36px;
+            background-color: #e65c4f;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: system-ui;
+            text-decoration: none;
+            color: #ffffff;
+            outline: none;
+            border: 1px solid #e65c4f;
+            cursor: pointer;
+            transition: background-color .3s ease-in-out;
+        }
+
+        .cc-reset-button:hover {
+            background-color: #e65c4f;
+            border: 1px solid #e65c4f;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 2;
+            margin-block-start: 0;
+            margin-block-end: 16px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .expire-link {
+            color: #e65c4f;
+        }
+    </style>
+{% endblock %}
+
+<div class="container">
+    <div class="mail-content">
+        <h1>Validation du compte</h1>
+
+        <p>Vous avez récemment fait une inscription sur la plateforme "The Knowledge". </p>
+        <p>Pour profiter d'une experience optimale sur la plateforme,
+            vous devez valider votre compte en cliquant sur le bouton ci-dessous.</p>
+
+        <a href="{{ signedUrl }}" class="cc-reset-button">Valider mon compte</a>.
+
+        <p class="expire-link">Ce lien expire dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle', 'fr_FR') }}.</p>
+
+        <p>Merci!</p>
+    </div>
+</div>

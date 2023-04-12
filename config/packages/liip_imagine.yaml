@@ -41,7 +41,7 @@ liip_imagine:
         blog_post:
             quality: 75
             filters:
-                thumbnail  : { size : [750, 350], mode : outbound }
+                thumbnail  : { size : [300, 200], mode : outbound }
 
         single_post:
             quality: 75

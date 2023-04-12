@@ -3,6 +3,7 @@
 namespace App\Entity\Post;
 
 use App\Repository\Post\VideoRepository;
+use App\Traits\DatetimeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class Video
 {
+    use DatetimeTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -18,12 +21,6 @@ class Video
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $link = null;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $createdAt;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $updatedAt;
 
     #[ORM\OneToMany(mappedBy: 'video', targetEntity: Post::class)]
     private Collection $post;
@@ -56,42 +53,6 @@ class Video
     public function preUpdate(): void
     {
         $this->updatedAt = new \DateTimeImmutable();
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param \DateTimeImmutable $createdAt
-     * @return Video
-     */
-    public function setCreatedAt(\DateTimeImmutable $createdAt): Video
-    {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getUpdatedAt(): \DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param \DateTimeImmutable $updatedAt
-     * @return Video
-     */
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): Video
-    {
-        $this->updatedAt = $updatedAt;
-        return $this;
     }
 
     /**

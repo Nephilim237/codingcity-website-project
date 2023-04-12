@@ -1,89 +1,8 @@
-
-{#<!-- Spinner Start -->#}
-{#<div id="spinner"#}
-{#     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">#}
-{#    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">#}
-{#        <span class="sr-only">Chargement...</span>#}
-{#    </div>#}
-{#</div>#}
-{#<!-- Spinner End -->#}
-
-{#<!-- Navbar Start -->#}
-{#<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">#}
-{#    <a href="{{ path('cc_home') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">#}
-{#        <img src="{{ asset('svg/logo3.svg') }}" alt="logo de Coding City" width="50">#}
-{#        <img src="{{ asset('svg/brand.svg') }}" alt="Marque de Coding City" height="40">#}
-{#        #}{#        <h2 class="m-0 cc-text-primary">The Knowledge</h2>#}
-{#    </a>#}
-{#    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">#}
-{#        <span class="navbar-toggler-icon"></span>#}
-{#    </button>#}
-{#    <div class="collapse navbar-collapse" id="navbarCollapse">#}
-{#        <div class="navbar-nav ms-auto p-4 p-lg-0">#}
-{#            <a href="{{ path('cc_home') }}" class="nav-item nav-link active">Accueil</a>#}
-{#            <a href="{{ path('cc_blog') }}" class="nav-item nav-link">Blog</a>#}
-{#            #}{#            <div class="nav-item dropdown"> #}
-{#            #}{#                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a> #}
-{#            #}{#                <div class="dropdown-menu fade-down m-0"> #}
-{#            #}{#                    <a href="team.html" class="dropdown-item">L'équipe</a> #}
-{#            #}{#                    <a href="testimonial.html" class="dropdown-item">Témoignages</a> #}
-{#            #}{#                    <a href="404.html" class="dropdown-item">404 Page</a> #}
-{#            #}{#                </div> #}
-{#            #}{#            </div> #}
-{#            #}{#            <a href="about.html" class="nav-item nav-link">A propos</a> #}
-{#            #}{#            <a href="contact.html" class="nav-item nav-link">Contact</a> #}
-{#        </div>#}
-{#        {% if is_granted('IS_AUTHENTICATED_FULLY') %}#}
-{#            <div class="navbar-nav me-5">#}
-{#                <div class="nav-item dropdown">#}
-{#                    <a href="#" class="nav-link dropdown-toggle text-capitalize" data-bs-toggle="dropdown">#}
-{#                        #}{#                        {{ app.user.userNaming.firstname ?? app.user.email }}#}
-{#                        <span>#}
-{#                        {% if app.user.image.user is defined and app.user.image.image is not null %}#}
-{#                            #}{#                            <img src="{{ asset('images/user/profile/'~ app.user.image.image) | imagine_filter('profile_image_navbar') }}"#}
-{#                            #}{#                                 alt="Image de#}
-{#                            #}{#                            profil"#}
-{#                            #}{#                                 width="28"#}
-{#                            #}{#                                 height="28"#}
-{#                            #}{#                                 class="rounded-circle">#}
-{#                            #}{#                        {% else %}#}
-{#                            #}{#                            <img src="{{ asset('img/team-1.jpg') }}" alt="Image de profil par defaut"#}
-{#                            #}{#                                 width="28"#}
-{#                            #}{#                                 height="28"#}
-{#                            #}{#                                 class="rounded-circle">#}
-{#                            #}{#                        {% endif %}#}
-{#                        </span>#}
-{#                    </a>#}
-{#                    <div class="dropdown-menu fade-down m-0">#}
-{#                        #}{#                        {% if app.user and is_granted('ROLE_ADMIN') %}#}
-{#                        #}{#                            <a href="{{ path('admin') }}" class="dropdown-item"><span class="material-icons-sharp">dashboard</span> Administration</a>#}
-{#                        #}{#                        {% endif %}#}
-{#                        #}{#                        <a href="{{ path('app_user_profile', {'id': app.user.id}) }}" class="dropdown-item"> <span#}
-{#                        #}{#                                    class="material-icons-sharp">manage_accounts</span> Mon Profil </a>#}
-{#                        #}{#                        #}{##}{#                        <a href="testimonial.html" class="dropdown-item">Témoignages</a> #}
-{#                        #}{#                        <a href="{{ path('app_logout') }}" class="dropdown-item"><span class="material-icons-sharp">logout</span> Déconnexion </a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            #}{#            <a href="{{ path('app_logout') }}" class="btn btn-primary py-4 px-lg-5">Deconnexion<i #}
-{#            #}{#                        class="fa fa-sign-out-alt ms-3"></i></a> #}
-{#        {% else %}#}
-{#            <a href="#" class="btn btn-link py-4 px-lg-5 ">Connexion<i#}
-{#                        class="fas fa-sign-in-alt ms-3"></i></a>#}
-{#            <a href="#" class="btn btn-primary py-4 px-lg-5">Rejoignez-nous<i#}
-{#                        class="fa fa-door-open ms-3"></i></a>#}
-{#        {% endif %}#}
-{#    </div>#}
-{#</nav>#}
-{#<!-- Navbar End -->#}
-
-
-
 <!--================Header Menu Area =================-->
 <header class="header_area">
     <div class="top_menu row m0">
-        <div class="container">
-            <div class="float-left">
+        <div class="container d-flex justify-content-between">
+            <div class="">
                 <ul class="list header_social">
                     <li><a href="https://www.facebook.com/codingcity237" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
                     <li><a href="https://twitter.com/Nephilim237" target="_blank"><i class="fa-brands fa-square-twitter"></i></a></li>
@@ -91,9 +10,12 @@
                     <li><a href="https://www.youtube.com/@CodingCity" target="_blank"><i class="fa-brands fa-square-youtube"></i></a></li>
                 </ul>
             </div>
-            <div class="float-right">
-                <a class="dn_btn" href="tel:+4400123654896"><i class="fa-solid fa-phone"></i> +237 6 94 37 25 72</a>
-                <a class="dn_btn" href="mailto:codingcity237@gmail.com">codingcity237@gmail.com</a>
+            <div class="d-flex justify-content-end align-items-center">
+                <a class="dn_btn d-flex justify-content-end align-items-center gap-2" href="tel:+237694372572"><i class="fa-solid fa-phone"></i>
+                    +237 6
+                    94 37 25 72</a>
+                <a class="dn_btn d-flex justify-content-end align-items-center gap-2" href="mailto:codingcity237@gmail.com"><i class="fa-solid
+                fa-envelope"></i> codingcity237@gmail.com</a>
             </div>
         </div>
     </div>
@@ -105,31 +27,35 @@
                     <img src="{{ asset('svg/logo3.svg') }}" alt="logo de Coding City" width="50">
                     <img src="{{ asset('svg/brand.svg') }}" alt="Marque de Coding City" height="40">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav menu_nav ml-auto">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav mx-auto">
                         <li class="nav-item active"><a class="nav-link" href="{{ path('cc_home') }}">Accueil</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ path('cc_blog') }}">Blog</a></li>
                         <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">Courses</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a>
                                 <li class="nav-item"><a class="nav-link" href="course-details.html">Course Details</a></li>
                             </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">Pages</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
                             </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">Blog</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                                 <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
@@ -137,6 +63,49 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                     </ul>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle text-capitalize d-flex align-items-center justify-content-center gap-2"
+                                   data-bs-toggle="dropdown"
+                                   role="button"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <img src="{{ app.user.avatar.avatar }}" alt="Image de profil de {{ app.user.fullname }}" width="28"
+                                         height=""
+                                         class="rounded-circle">
+                                    {{ app.user.fullname ?? app.user.email }}
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% if app.user and is_granted('ROLE_ADMIN') %}
+                                        <li class="nav-item">
+                                            <a href="#" class="dropdown-item"><span class="material-icons-sharp">dashboard</span>
+                                                Administration
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    <li class="nav-item">
+                                        <a href="#" class="dropdown-item">
+                                            <span class="material-icons-sharp">manage_accounts</span> Mon Profil
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('app_logout') }}" class="dropdown-item">
+                                            <span class="material-icons-sharp">logout</span>
+                                            Déconnexion
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-link ">Connexion<i
+                                    class="fas fa-sign-in-alt ms-3"></i></a>
+                        <a href="{{ path('app_register') }}" class="btn btn-primary text-white">Rejoignez-nous<i
+                                    class="fa fa-door-open ms-3"></i></a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

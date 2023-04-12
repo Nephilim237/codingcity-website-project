@@ -3,6 +3,7 @@
 namespace App\Entity\Post;
 
 use App\Repository\Post\ThumbnailRepository;
+use App\Traits\DatetimeTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -12,6 +13,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\HasLifecycleCallbacks]
 class Thumbnail
 {
+    use DatetimeTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -30,21 +33,9 @@ class Thumbnail
     #[ORM\OneToOne(mappedBy: 'thumbnail', targetEntity: Post::class, cascade: ['persist', 'remove'])]
     private Post $post;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $createdAt;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private \DateTimeImmutable $updatedAt;
-
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
-        $this->updatedAt = new \DateTimeImmutable();
-    }
-
-    #[ORM\PreUpdate]
-    public function preUpdate(): void
-    {
         $this->updatedAt = new \DateTimeImmutable();
     }
 
@@ -103,42 +94,6 @@ class Thumbnail
     public function setPost(Post $post): Thumbnail
     {
         $this->post = $post;
-        return $this;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getCreatedAt(): \DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param \DateTimeImmutable $createdAt
-     * @return Thumbnail
-     */
-    public function setCreatedAt(\DateTimeImmutable $createdAt): Thumbnail
-    {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
-    /**
-     * @return \DateTimeImmutable
-     */
-    public function getUpdatedAt(): \DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param \DateTimeImmutable $updatedAt
-     * @return Thumbnail
-     */
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): Thumbnail
-    {
-        $this->updatedAt = $updatedAt;
         return $this;
     }
 

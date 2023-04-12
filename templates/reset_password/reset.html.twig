@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% form_theme resetForm 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Réinitialisation du mot de passe{% endblock %}
+
+{% block body %}
+    <section class="section-form my-5 pb-3 pt_120">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    {% for flash_error in app.flashes('reset_password_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                    {% endfor %}
+                    <h1 class="h3 fw-light">Définir un nouveau mot de passe</h1>
+
+                    {{ form_start(resetForm) }}
+                    <div class="mb-3">
+                        {{ form_row(resetForm.plainPassword.first) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(resetForm.plainPassword.second) }}
+                    </div>
+                    <div class="my-4 d-grid gap-2">
+                        <button class="btn btn-primary text-white">Mettre à jour</button>
+                        <div class="d-flex w-100 justify-content-center align-items-center">
+                            <a href="{{ path('app_register') }}" class="text-center mt-1 mx-2">Créer un compte.</a> |
+                            <a href="{{ path('app_login') }}" class="text-center mt-1 mx-2">J'ai déjà un compte.</a>
+                        </div>
+                    </div>
+                    {{ form_end(resetForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

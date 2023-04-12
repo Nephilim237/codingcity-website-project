@@ -1,3 +1,7 @@
 {% include 'layouts/_blog.html.twig' with {
-    posts: posts
+    posts: posts,
+    userPic: owner.avatar.avatar,
+    userFullname: owner.fullname,
+    userJobTitle: owner.userInfo.jobTitle,
+    userBio: owner.userBio.bio
 } %}

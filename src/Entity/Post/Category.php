@@ -2,8 +2,8 @@
 
 namespace App\Entity\Post;
 
-use App\Entity\Post\Post;
 use App\Repository\Post\CategoryRepository;
+use App\Traits\DatetimeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -17,14 +17,20 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity('slug', message: 'Ce slug esiste déjà.')]
 class Category
 {
+    use DatetimeTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Assert\NotBlank()]
+    private string $title;
+
     #[ORM\Column(length: 255, unique: true)]
     #[Assert\NotBlank]
-    private ?string $name = null;
+    private ?string $slug = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'parent')]
     private ?self $category = null;
@@ -32,53 +38,33 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: self::class)]
     private Collection $parent;
 
-    #[ORM\Column(length: 255, unique: true)]
-    #[Assert\NotBlank]
-    private ?string $slug = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\NotNull]
-    private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'categories')]
     private Collection $post;
 
-    public function __construct(private readonly SluggerInterface $slugger)
+    public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
         $this->parent = new ArrayCollection();
         $this->post = new ArrayCollection();
-        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function __toString()
     {
-        return $this->name;
+        return $this->title;
     }
 
-    #[ORM\PrePersist]
-    public function computeSlug(): void
+    public function computeSlug(SluggerInterface $slugger): void
     {
-        $this->slug = (string)$this->slugger->slug($this->name);
+        $this->slug = (string) $slugger ->slug((string) $this)->lower();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getCategory(): ?self
@@ -123,17 +109,21 @@ class Category
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getSlug(): string
     {
         return $this->slug;
     }
-
-//    public function setSlug(string $slug): self
-//    {
-//        $this->slug = $slug;
-//
-//        return $this;
-//    }
 
     public function getDescription(): ?string
     {
@@ -146,18 +136,6 @@ class Category
 
         return $this;
     }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-//    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-//    {
-//        $this->createdAt = $createdAt;
-//
-//        return $this;
-//    }
 
     /**
      * @return Collection<int, Post>

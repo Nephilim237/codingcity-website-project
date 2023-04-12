@@ -6,9 +6,30 @@
         </div>
     </div>
     <div class="col-lg-3  col-md-3">
-        {% include 'components/blog/_categories_blog_meta.html.twig' with {
-            post: post
-        } %}
+        <div class="blog_info text-end fw-bold">
+            <ul class="blog_meta list mb-3">
+                <li>
+                    <a href="#">{{ post.author.userInfo.fullname }}<i class="fa-regular fa-user"></i></a>
+                </li>
+                <li>
+                    <a href="#">
+                        {{ post.createdAt | format_datetime('medium', 'short', locale='fr', timezone='Africa/Douala') }}
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </a>
+                </li>
+                <li><a href="#">1.2M Views<i class="fa-regular fa-eye"></i></a></li>
+                <li><a href="#">06 Comments<i class="fa-regular fa-comment"></i></a></li>
+                <li class="">{% include 'components/_like.html.twig' %}</li>
+            </ul>
+            {% include 'components/_sharer.html.twig' with {
+                post: post
+            } %}
+            <div class="post_tag">
+                {% for category in post.categories %}
+                    <a href="#" class="badge rounded-pill badge-pill bg-primary">{{ category }}</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <div class="col-lg-9 col-md-9 blog_details">
         <h2>{{ post.title }}</h2>

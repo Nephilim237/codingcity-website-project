@@ -2,25 +2,35 @@
     <div class="blog_left_sidebar">
         {% for post in posts %}
             <article class="row blog_item">
-                <a href="{{ path('cc_single_blog', {slug: post.slug}) }}" class="text-secondary">
-                    <div class="blog_post">
-                        <div class="row">
-                            <div class="col-4">
+                <div class="blog_post">
+                    <div class="row">
+                        <div class="col-4">
+                            <a href="{{ path('cc_single_blog', {slug: post.slug}) }}" class="text-secondary">
                                 <img src="{{ asset('uploads/images/posts/banner/' ~ post.thumbnail.imageName) | imagine_filter
                                     ('blog_post') }}"
                                      alt="{{ post.title }}">
-
-                            </div>
-                            <div class="col-8">
+                            </a>
+                        </div>
+                        <div class="col-8">
+                            <a href="{{ path('cc_single_blog', {slug: post.slug}) }}" class="text-secondary">
                                 <div class="blog_details pt-0">
                                     <h2>{{ post.title }}</h2>
                                     <p class="mb-2">{{ post.content | u.truncate(200, '...', false) | raw }}</p>
                                     {#                                                        <a href="#" class="white_bg_btn fw-bold">View More</a> #}
                                 </div>
+                            </a>
+                            <div class="d-flex justify-content-between align-items-center pe-3">
+                                <p class="cc-blog-date fw-bold fst-italic mb-0">
+                                    <i class="lnr lnr-calendar-full"></i>
+                                    {{ post.createdAt | format_datetime('medium', 'short', locale='fr', timezone='Africa/Douala') }}
+                                </p>
+                                <p class="cc-like mb-0">
+                                    {% include 'components/_like.html.twig' %}
+                                </p>
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </article>
         {% endfor %}
 

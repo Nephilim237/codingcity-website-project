@@ -1,3 +1,8 @@
+
 {% include 'layouts/_single.html.twig' with {
-    post: post
+    post: post,
+    userPic: post.author.avatar.avatar,
+    userFullname: post.author.userInfo.fullname,
+    userJobTitle: post.author.userInfo.jobTitle,
+    userBio: post.author.userBio.bio
 } %}

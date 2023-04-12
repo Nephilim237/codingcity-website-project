@@ -1,14 +1,13 @@
 <aside class="single_sidebar_widget author_widget">
-    <img class="author_img rounded-circle" src="img/blog/author.png" alt="">
-    <h4>Charlie Barber</h4>
-    <p>Senior blog writer</p>
+    <img class="author_img rounded-circle cc-bg-secondary p-3" width="160" src="{{ userPic }}" alt="Photo de profil de {{ userPic }}">
+    <h4>{{ userFullname }}</h4>
+    <p>{{ userJobTitle }}</p>
     <div class="social_icon">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-github"></i></a>
-        <a href="#"><i class="fa fa-behance"></i></a>
+        <a href="https://www.facebook.com/codingcity237" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://twitter.com/Nephilim237" target="_blank"><i class="fa-brands fa-square-twitter"></i></a>
+        <a href="https://www.instagram.com/codingcity237/" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
+        <a href="https://www.youtube.com/@CodingCity" target="_blank"><i class="fa-brands fa-square-youtube"></i></a>
     </div>
-    <p>Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on
-        boot camp when you can get. Boot camps have itssuppor ters andits detractors.</p>
+    <p>{{ userBio | raw }}</p>
     <div class="br"></div>
 </aside>

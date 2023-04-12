@@ -1,0 +1,13 @@
+{% if app.user %}
+<a href="{{ path('cc_like', {id: post.id}) }}" data-action="like" class="">
+    {% endif %}
+    {% set likes = (post.userLike | length) %}
+    <span>
+        {{ likes < 10 ? '0'~likes : likes  }} j'aime
+    </span>
+    <i class="fa-solid fa-thumbs-up {{ app.user in post.userLike ? '' : 'd-none'}}"></i>
+    <i class="fa-regular fa-thumbs-up {{ app.user in post.userLike ? 'd-none' : ''}}"></i>
+    {% if app.user %}
+</a>
+{% endif %}
+

@@ -7,7 +7,7 @@
         "@symfony/webpack-encore": "^4.0.0",
         "core-js": "^3.23.0",
         "regenerator-runtime": "^0.13.9",
-        "sass": "^1.60.0",
+        "sass": "^1.61.0",
         "sass-loader": "^13.2.2",
         "webpack": "^5.76.3",
         "webpack-cli": "^4.10.0",
@@ -19,6 +19,10 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "compile": "sass public/scss/bootstrap.scss public/css/bootstrap.css -s compressed"
+    },
+    "dependencies": {
+        "axios": "^0.27.2"
     }
 }

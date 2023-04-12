@@ -8,11 +8,10 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 class CategoryFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private readonly PostRepository $postRepository, private readonly SluggerInterface $slugger) {
+    public function __construct(private readonly PostRepository $postRepository) {
 
     }
     public function load(ObjectManager $manager): void
@@ -21,9 +20,9 @@ class CategoryFixtures extends Fixture implements DependentFixtureInterface
 
         $categories = [];
         for ($c = 0; $c < 10; $c++) {
-            $category = new Category($this->slugger);
+            $category = new Category();
             $category
-                ->setName($faker->word() .' '. $c)
+                ->setTitle($faker->word() .' '. $c)
                 ->setDescription(
                     mt_rand(0, 1) === 1 ? $faker->realText(254) : ''
                 )
